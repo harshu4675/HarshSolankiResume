@@ -1,0 +1,16 @@
+{
+  "name": "Harsh Solanki — Full Stack MERN Developer",
+  "short_name": "Harsh Portfolio",
+  "description": "Portfolio of Harsh Solanki",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F2EE",
+  "theme_color": "#F7F2EE",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
