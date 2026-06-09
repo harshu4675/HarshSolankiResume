@@ -41,22 +41,16 @@ function ProjectIcon({ name, size = 24, className = "" }) {
   return <IconComponent size={size} className={className} />;
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// LIGHT PROJECT PREVIEW - Clean & Minimal
-// ═══════════════════════════════════════════════════════════════════
 function ProjectPreview({ project, isLarge = false }) {
   return (
     <div className="relative w-full h-full rounded-xl overflow-hidden border border-black/[0.08] bg-gradient-card group/preview">
-      {/* ━━━ Top Bar (Browser-style without URL) ━━━ */}
       <div className="px-3 py-2.5 border-b border-black/[0.05] flex items-center gap-2 bg-surface-2">
-        {/* Traffic Lights */}
         <div className="flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 rounded-full bg-black/10" />
           <div className="w-2.5 h-2.5 rounded-full bg-black/10" />
           <div className="w-2.5 h-2.5 rounded-full bg-black/10" />
         </div>
 
-        {/* Center - Project tag */}
         <div className="flex-1 flex items-center justify-center">
           <div className="px-2.5 py-0.5 rounded-md bg-white border border-black/[0.06]">
             <span className="text-[9px] font-mono text-text-tertiary tracking-wide">
@@ -65,7 +59,6 @@ function ProjectPreview({ project, isLarge = false }) {
           </div>
         </div>
 
-        {/* Live indicator */}
         <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-[9px] font-bold text-emerald-700 tracking-wide">
@@ -74,9 +67,7 @@ function ProjectPreview({ project, isLarge = false }) {
         </div>
       </div>
 
-      {/* ━━━ Content Area ━━━ */}
       <div className="relative flex-1 flex flex-col items-center justify-center p-6 min-h-[180px] bg-white">
-        {/* Subtle dot grid background */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -85,7 +76,6 @@ function ProjectPreview({ project, isLarge = false }) {
           }}
         />
 
-        {/* Subtle accent glow */}
         <div
           className="absolute top-1/3 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-[0.06] pointer-events-none"
           style={{
@@ -95,7 +85,6 @@ function ProjectPreview({ project, isLarge = false }) {
         />
 
         <div className="relative z-10 text-center">
-          {/* ━━━ Icon ━━━ */}
           <div
             className={`${
               isLarge ? "w-16 h-16" : "w-12 h-12"
@@ -108,7 +97,6 @@ function ProjectPreview({ project, isLarge = false }) {
             />
           </div>
 
-          {/* ━━━ Project Name ━━━ */}
           <h4
             className={`${
               isLarge ? "text-2xl" : "text-base"
@@ -117,7 +105,6 @@ function ProjectPreview({ project, isLarge = false }) {
             {project.title}
           </h4>
 
-          {/* ━━━ Type Label ━━━ */}
           <p
             className={`${
               isLarge ? "text-xs" : "text-[10px]"
@@ -126,7 +113,6 @@ function ProjectPreview({ project, isLarge = false }) {
             {project.type}
           </p>
 
-          {/* ━━━ Tech Stack (Large only) ━━━ */}
           {isLarge && (
             <div className="flex flex-wrap items-center justify-center gap-1.5 mt-4">
               {project.tech.slice(0, 4).map((tech) => (
@@ -141,7 +127,6 @@ function ProjectPreview({ project, isLarge = false }) {
           )}
         </div>
 
-        {/* ━━━ Bottom decorative line ━━━ */}
         <div className="absolute bottom-3 left-3 right-3 flex items-center gap-1.5 opacity-30">
           <div className="text-[10px] font-mono text-text-quaternary">$</div>
           <div className="flex-1 h-px bg-gradient-to-r from-black/15 via-black/5 to-transparent" />
@@ -152,9 +137,6 @@ function ProjectPreview({ project, isLarge = false }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// FLAGSHIP - TalishTalks
-// ═══════════════════════════════════════════════════════════════════
 function FlagshipProject({ project }) {
   const [activeFeatureSet, setActiveFeatureSet] = useState(0);
   const featureSets = [
@@ -178,14 +160,12 @@ function FlagshipProject({ project }) {
 
       <div className="relative bg-white rounded-3xl border border-black/[0.06] overflow-hidden shadow-elevation-3">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 p-6 md:p-8 lg:p-10 relative">
-          {/* ━━━ Left: Preview (Large) ━━━ */}
           <ScrollReveal className="lg:col-span-6" delay={0.1}>
             <div className="aspect-[4/3] w-full">
               <ProjectPreview project={project} isLarge={true} />
             </div>
           </ScrollReveal>
 
-          {/* ━━━ Right: Project Info ━━━ */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <ScrollReveal delay={0.2}>
               <div className="flex items-center gap-2 mb-3">
@@ -204,7 +184,6 @@ function FlagshipProject({ project }) {
                 {project.description}
               </p>
 
-              {/* Stats Grid */}
               <div className="grid grid-cols-2 gap-2.5 mb-5">
                 {project.stats.map((stat) => (
                   <div
@@ -221,7 +200,6 @@ function FlagshipProject({ project }) {
                 ))}
               </div>
 
-              {/* Features */}
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-[10px] font-bold text-text-quaternary tracking-[0.1em] uppercase">
@@ -300,9 +278,6 @@ function FlagshipProject({ project }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// COMPACT PROJECT CARD
-// ═══════════════════════════════════════════════════════════════════
 function ProjectCard({ project }) {
   return (
     <motion.div variants={gridItemVariants}>
@@ -310,14 +285,11 @@ function ProjectCard({ project }) {
         className="bg-white rounded-2xl border border-black/[0.06] overflow-hidden h-full flex flex-col group transition-all duration-400 hover:shadow-elevation-4 hover:-translate-y-1 hover:border-black/[0.10]"
         style={{ boxShadow: "0 1px 4px rgba(15,15,18,0.04)" }}
       >
-        {/* ━━━ Preview ━━━ */}
         <div className="relative aspect-[16/9] p-3 bg-surface-2">
           <ProjectPreview project={project} isLarge={false} />
         </div>
 
-        {/* ━━━ Body ━━━ */}
         <div className="p-4 flex-1 flex flex-col">
-          {/* Type badge */}
           <div className="mb-2">
             <span className="inline-block px-2 py-0.5 rounded-md text-[9px] font-bold tracking-[0.08em] uppercase text-text-tertiary bg-black/[0.04] border border-black/[0.05]">
               {project.type}
@@ -335,7 +307,6 @@ function ProjectCard({ project }) {
             {project.tagline}
           </p>
 
-          {/* Mini stats */}
           <div className="grid grid-cols-2 gap-1 mb-3">
             {project.stats.slice(0, 4).map((stat) => (
               <div
@@ -354,7 +325,6 @@ function ProjectCard({ project }) {
 
           <div className="flex-1" />
 
-          {/* Tech tags */}
           <div className="flex flex-wrap gap-1 mb-3">
             {project.tech.slice(0, 4).map((tech) => (
               <span
@@ -371,7 +341,6 @@ function ProjectCard({ project }) {
             )}
           </div>
 
-          {/* Action buttons */}
           <div className="flex items-center gap-1.5 pt-3 border-t border-black/[0.05]">
             <a
               href={project.live}
@@ -398,9 +367,6 @@ function ProjectCard({ project }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// VIEW MORE ON GITHUB CARD - Light & Minimal
-// ═══════════════════════════════════════════════════════════════════
 function ViewMoreCard() {
   return (
     <motion.a

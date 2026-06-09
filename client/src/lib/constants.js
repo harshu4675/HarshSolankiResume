@@ -448,7 +448,7 @@ export const EXPERIENCE = [
     id: "kodrish",
     company: "Kodrish Innovation",
     role: "Full Stack Web Development Intern",
-    duration: "3 Months",
+    duration: "4 Months",
     period: "2024",
     type: "Internship",
     location: "Indore, India",
