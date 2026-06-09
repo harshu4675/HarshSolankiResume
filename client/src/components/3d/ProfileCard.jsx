@@ -102,7 +102,7 @@ export default function ProfileCard() {
                   Experience
                 </span>
                 <p className="text-primary text-xs font-semibold truncate">
-                  Kodrish Innovation · 3 Months
+                  Kodrish Innovation · 4 Months
                 </p>
               </div>
             </div>

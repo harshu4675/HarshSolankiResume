@@ -30,7 +30,7 @@ export const METRICS = [
   },
   {
     id: "experience",
-    value: 3,
+    value: 4,
     suffix: " Mo",
     label: "Industry Experience",
     description: "At Kodrish Innovation",
@@ -223,12 +223,12 @@ export const PROJECTS = [
     id: "talishtalks",
     title: "TalishTalks",
     subtitle: "Real-Time Chat Application",
-    tagline: "A production-grade messaging platform with advanced features",
+    tagline: "Production-grade messaging platform with PWA support",
     description:
-      "TalishTalks is a full-featured real-time chat application built with the MERN stack and Socket.io. It rivals commercial messaging apps with features like PWA support, hidden chats, PIN protection, disappearing messages, and rich media uploads.",
-    type: "Flagship Project",
+      "TalishTalks is a full-featured real-time chat application built with the MERN stack and Socket.io. Features include PWA support, hidden chats, PIN protection, disappearing messages, and rich media uploads.",
+    type: "Real-Time App",
     isFeatured: true,
-    color: "#E94B3C",
+    iconName: "chat",
     tech: [
       "React.js",
       "Node.js",
@@ -258,22 +258,19 @@ export const PROJECTS = [
     ],
     github: "https://github.com/harshu4675/TalishTalks",
     live: "https://talishtalks.netlify.app",
-    image: "/assets/projects/talishtalks.png",
-    mockupBg: "#1A1A2E",
-    icon: "💬",
   },
 
-  // ━━━ 2. ShopEasy (E-Commerce) ━━━ FIRST IN GRID
+  // ━━━ 2. ShopEasy ━━━
   {
     id: "shopeasy",
     title: "ShopEasy",
     subtitle: "Full-Stack E-Commerce Platform",
-    tagline: "Complete clothing & accessories store with Razorpay",
+    tagline: "Complete clothing store with Razorpay integration",
     description:
-      "ShopEasy is a complete e-commerce platform for clothing and accessories with customer storefront and full-featured admin dashboard. Integrates Razorpay for secure payments, real-time order tracking, inventory management, and JWT-based authentication.",
+      "ShopEasy is a complete e-commerce platform for clothing and accessories with customer storefront and full-featured admin dashboard. Integrates Razorpay for secure payments, real-time order tracking, inventory management.",
     type: "E-Commerce",
     isFeatured: false,
-    color: "#5B5FC7",
+    iconName: "shop",
     tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Razorpay", "JWT"],
     features: [
       "Product catalog with categories",
@@ -284,8 +281,7 @@ export const PROJECTS = [
       "Admin dashboard with CMS",
       "Inventory management",
       "JWT authentication",
-      "Order history & invoices",
-      "Fully responsive design",
+      "Responsive design",
     ],
     stats: [
       { label: "Payments", value: "Razorpay" },
@@ -295,22 +291,19 @@ export const PROJECTS = [
     ],
     github: "https://github.com/harshu4675/ShopEasy",
     live: "https://shopeasy-fashionstore.netlify.app",
-    image: "/assets/projects/shopeasy.png",
-    mockupBg: "#EEF1FF",
-    icon: "🛍️",
   },
 
-  // ━━━ 3. BlogSpace (Blog Platform) ━━━ SECOND IN GRID
+  // ━━━ 3. BlogSpace ━━━
   {
     id: "blogspace",
     title: "BlogSpace",
     subtitle: "Modern Blogging Platform",
-    tagline: "Feature-rich blogging platform with CMS",
+    tagline: "Feature-rich blog platform with CMS and dark mode",
     description:
-      "BlogSpace is a full-featured blogging platform with clean reading experience and powerful admin capabilities. Features rich content publishing, social interactions (likes, comments, bookmarks), category organization, dark mode support, and SEO-friendly structure.",
+      "BlogSpace is a full-featured blogging platform with clean reading experience and powerful admin capabilities. Features rich content publishing, likes, comments, bookmarks, dark mode, and SEO-friendly structure.",
     type: "Content Platform",
     isFeatured: false,
-    color: "#7C3AED",
+    iconName: "blog",
     tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Cloudinary", "JWT"],
     features: [
       "Rich blog publishing editor",
@@ -321,7 +314,6 @@ export const PROJECTS = [
       "Dark mode support",
       "SEO-friendly structure",
       "Cloudinary image uploads",
-      "Reading time estimation",
       "Responsive layout",
     ],
     stats: [
@@ -332,22 +324,19 @@ export const PROJECTS = [
     ],
     github: "https://github.com/harshu4675/BlogSpace",
     live: "https://blogspacebyharshuu.netlify.app",
-    image: "/assets/projects/blogspace.png",
-    mockupBg: "#F5EEFF",
-    icon: "✍️",
   },
 
-  // ━━━ 4. BrewHaven (Coffee Shop PWA) ━━━
+  // ━━━ 4. BrewHaven ━━━
   {
     id: "brewhaven",
     title: "BrewHaven",
     subtitle: "Coffee Shop E-Commerce + PWA",
     tagline: "Premium coffee ordering with offline support",
     description:
-      "BrewHaven is a complete coffee shop e-commerce platform with PWA capabilities. Features include offline shopping, real-time order tracking, admin dashboard, shop status indicator, and product reviews — all designed for a smooth mobile-first experience.",
-    type: "E-Commerce + PWA",
+      "BrewHaven is a complete coffee shop e-commerce platform with PWA capabilities. Features offline shopping, real-time order tracking, admin dashboard, shop status indicator, and product reviews.",
+    type: "PWA E-Commerce",
     isFeatured: false,
-    color: "#8B4513",
+    iconName: "coffee",
     tech: [
       "React.js",
       "Node.js",
@@ -375,22 +364,19 @@ export const PROJECTS = [
     ],
     github: "https://github.com/harshu4675/BrewHaven",
     live: "https://your-own-brewhaven.netlify.app",
-    image: "/assets/projects/brewhaven.png",
-    mockupBg: "#F5E6D3",
-    icon: "☕",
   },
 
-  // ━━━ 5. CodeMart (Code Marketplace) ━━━
+  // ━━━ 5. CodeMart ━━━
   {
     id: "codemart",
     title: "CodeMart",
     subtitle: "Digital Code Marketplace",
     tagline: "Buy & sell code templates with secure payments",
     description:
-      "CodeMart is a full-fledged digital marketplace for buying and selling code templates, components, and starter projects. Features Razorpay integration, real-time notifications via Socket.io, email verification, password recovery, downloadable products, and comprehensive admin analytics.",
+      "CodeMart is a full-fledged digital marketplace for buying and selling code templates. Features Razorpay integration, real-time notifications, email verification, downloadable products, and admin analytics.",
     type: "Marketplace",
     isFeatured: false,
-    color: "#2563EB",
+    iconName: "marketplace",
     tech: [
       "React.js",
       "Node.js",
@@ -419,22 +405,19 @@ export const PROJECTS = [
     ],
     github: "https://github.com/harshu4675/CodeMart",
     live: "https://yourscodemart.netlify.app",
-    image: "/assets/projects/codemart.png",
-    mockupBg: "#EEF2FF",
-    icon: "🛒",
   },
 
-  // ━━━ 6. EdTech (Education Platform) ━━━
+  // ━━━ 6. EdTech ━━━
   {
     id: "edtech",
     title: "EdTech",
     subtitle: "Interactive Learning Platform",
     tagline: "Modern education platform for tech learners",
     description:
-      "EdTech is a comprehensive education platform designed for developers and tech learners. Features include curated learning content, interactive lessons, save articles for later, scroll-aware navigation, mobile-responsive design, and a smooth reading experience built with modern React patterns.",
+      "EdTech is a comprehensive education platform for developers. Features curated learning content, interactive lessons, save articles for later, scroll-aware navigation, and smooth reading experience.",
     type: "EdTech Platform",
     isFeatured: false,
-    color: "#0F766E",
+    iconName: "education",
     tech: ["React.js", "LocalStorage", "CSS3", "Component Architecture"],
     features: [
       "Interactive learning content",
@@ -455,9 +438,6 @@ export const PROJECTS = [
     ],
     github: "https://github.com/harshu4675/EdTech",
     live: "https://edtechbyharsh.netlify.app",
-    image: "/assets/projects/edtech.png",
-    mockupBg: "#ECFDF5",
-    icon: "🎓",
   },
 ];
 
@@ -521,93 +501,179 @@ export const EDUCATION = [
     ],
   },
 ];
-
-// ━━━ Certifications with View Links ━━━
 export const CERTIFICATIONS = [
   {
     id: "kodrish-cert",
-    title: "Web Development Certification",
-    issuer: "Kodrish Technology",
-    year: "2024",
-    type: "Professional",
+    title: "Web Development Internship",
+    issuer: "KodRish Innovation & Solutions",
+    year: "2025",
+    duration: "May 2025 – Aug 2025",
+    type: "Internship Certificate",
+    category: "professional",
     color: "#E94B3C",
     description:
-      "Certification in Full Stack Web Development covering MERN stack technologies.",
-    skills: ["React.js", "Node.js", "MongoDB", "Express.js", "REST APIs"],
-    certificateUrl: "/assets/certificates/kodrish-certificate.jpg", // ← Add your certificate image
-    verifyUrl: "", // optional: external verification link
+      "Successfully completed a 4-month internship in Web Development. Worked on real-world MERN stack projects, demonstrated consistency and hard work throughout the internship period.",
+    skills: [
+      "MERN Stack",
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "REST APIs",
+    ],
+    credentialId: "KDRS2025786-934",
+    internshipId: "KDRS25-083",
+    issuedBy: "Krish Bhagat (Founder)",
+    certificateUrl: "/assets/certificates/kodrish-certificate.jpg",
+    verifyUrl: "",
   },
+
   {
     id: "ypsilon-cert",
-    title: "Core & Advanced Java",
-    issuer: "Ypsilon Technology",
-    year: "2023",
-    type: "Professional",
+    title: "Core & Advanced Java Internship",
+    issuer: "Ypsilon IT Solutions",
+    year: "2024",
+    duration: "May 2024 – June 2024",
+    type: "Internship Certificate",
+    category: "professional",
     color: "#5B5FC7",
     description:
-      "Certification covering Core Java fundamentals and Advanced Java programming concepts.",
-    skills: ["Core Java", "Advanced Java", "OOP", "Collections", "JDBC"],
+      "Successfully completed internship program at Ypsilon IT Solutions Pvt. Ltd. Worked on assigned client projects using Core Java and Advanced Java concepts during 4th semester.",
+    skills: [
+      "Core Java",
+      "Advanced Java",
+      "OOP",
+      "Collections",
+      "JDBC",
+      "Multithreading",
+    ],
+    credentialId: "YPS/202406/7607",
+    issuedBy: "Pranay Pariwal (Director)",
     certificateUrl: "/assets/certificates/ypsilon-certificate.jpg",
     verifyUrl: "",
   },
+
   {
-    id: "hr-js",
+    id: "hr-js-intermediate",
     title: "JavaScript (Intermediate)",
     issuer: "HackerRank",
-    year: "2024",
+    year: "2026",
     type: "Skill Verified",
+    category: "hackerrank",
     color: "#00EA64",
     description:
-      "Verified JavaScript intermediate skills through HackerRank assessment.",
+      "Passed the HackerRank JavaScript (Intermediate) skill certification test, demonstrating proficiency in advanced JavaScript concepts, async programming, and ES6+ features.",
     skills: [
       "JavaScript",
       "ES6+",
-      "DOM",
       "Async/Await",
-      "Functional Programming",
+      "Closures",
+      "Higher-Order Functions",
     ],
-    certificateUrl: "/assets/certificates/hr-javascript.jpg",
-    verifyUrl: "https://www.hackerrank.com/certificates/YOUR_CERT_ID", // ← Paste your HR verify link
+    credentialId: "6581BC9B1DA8",
+    certificateUrl: "/assets/certificates/hr-javascript-intermediate.jpg",
+    verifyUrl: "https://www.hackerrank.com/certificates/6581BC9B1DA8",
   },
+
   {
-    id: "hr-react",
-    title: "React (Basic)",
+    id: "hr-frontend-react",
+    title: "Frontend Developer (React)",
     issuer: "HackerRank",
-    year: "2024",
-    type: "Skill Verified",
+    year: "2026",
+    type: "Role Certified",
+    category: "hackerrank",
     color: "#00EA64",
     description:
-      "Verified React fundamentals through HackerRank skill certification.",
-    skills: ["React", "JSX", "Components", "Props", "State"],
-    certificateUrl: "/assets/certificates/hr-react.jpg",
-    verifyUrl: "https://www.hackerrank.com/certificates/YOUR_CERT_ID",
+      "Passed the HackerRank Frontend Developer (React) role certification test, validating expertise in React.js, components, hooks, and modern frontend development.",
+    skills: [
+      "React.js",
+      "JSX",
+      "Hooks",
+      "Components",
+      "State Management",
+      "Props",
+    ],
+    credentialId: "7520501F487D",
+    certificateUrl: "/assets/certificates/hr-frontend-react.jpg",
+    verifyUrl: "https://www.hackerrank.com/certificates/7520501F487D",
   },
+
   {
-    id: "hr-problem",
-    title: "Problem Solving (Basic)",
-    issuer: "HackerRank",
-    year: "2024",
-    type: "Skill Verified",
-    color: "#00EA64",
-    description: "Verified problem-solving and algorithmic thinking skills.",
-    skills: ["DSA", "Algorithms", "Logic", "Optimization"],
-    certificateUrl: "/assets/certificates/hr-problem-solving.jpg",
-    verifyUrl: "https://www.hackerrank.com/certificates/YOUR_CERT_ID",
+    id: "fcc-responsive",
+    title: "Responsive Web Design",
+    issuer: "freeCodeCamp",
+    year: "2026",
+    duration: "300 Hours",
+    type: "Developer Certification",
+    category: "freecodecamp",
+    color: "#0A0A23",
+    description:
+      "Successfully completed Legacy Responsive Web Design V8 Developer Certification. 300-hour curriculum covering HTML5, CSS3, Flexbox, Grid, and accessibility.",
+    skills: ["HTML5", "CSS3", "Flexbox", "Grid", "Responsive Design", "A11y"],
+    certificateUrl: "/assets/certificates/fcc-responsive-web.jpg",
+    verifyUrl:
+      "https://www.freecodecamp.org/certification/harshu6278/responsive-web-design",
   },
+
   {
-    id: "hr-sql",
-    title: "SQL (Basic)",
-    issuer: "HackerRank",
-    year: "2024",
-    type: "Skill Verified",
-    color: "#00EA64",
-    description: "Verified SQL fundamentals and database querying skills.",
-    skills: ["SQL", "Queries", "Joins", "Database Design"],
-    certificateUrl: "/assets/certificates/hr-sql.jpg",
-    verifyUrl: "https://www.hackerrank.com/certificates/YOUR_CERT_ID",
+    id: "fcc-javascript",
+    title: "JavaScript Algorithms & Data Structures",
+    issuer: "freeCodeCamp",
+    year: "2026",
+    duration: "300 Hours",
+    type: "Developer Certification",
+    category: "freecodecamp",
+    color: "#0A0A23",
+    description:
+      "Successfully completed Legacy JavaScript Algorithms and Data Structures V8 Developer Certification. 300-hour curriculum covering ES6, OOP, functional programming, and algorithms.",
+    skills: [
+      "JavaScript",
+      "Algorithms",
+      "Data Structures",
+      "OOP",
+      "Functional Programming",
+      "Regex",
+    ],
+    certificateUrl: "/assets/certificates/fcc-javascript.jpg",
+    verifyUrl:
+      "https://www.freecodecamp.org/certification/harshu6278/javascript-algorithms-and-data-structures",
+  },
+
+  {
+    id: "fcc-frontend",
+    title: "Front-End Development Libraries",
+    issuer: "freeCodeCamp",
+    year: "2026",
+    duration: "300 Hours",
+    type: "Developer Certification",
+    category: "freecodecamp",
+    color: "#0A0A23",
+    description:
+      "Successfully completed Front-End Development Libraries V8 Developer Certification. 300-hour curriculum covering React, Redux, Bootstrap, Sass, and jQuery.",
+    skills: ["React", "Redux", "Bootstrap", "Sass", "jQuery", "Modern UI"],
+    certificateUrl: "/assets/certificates/fcc-frontend-libraries.jpg",
+    verifyUrl:
+      "https://www.freecodecamp.org/certification/harshu6278/front-end-development-libraries",
+  },
+
+  {
+    id: "scaler-sql",
+    title: "SQL for Beginners with MySQL",
+    issuer: "Scaler Topics",
+    year: "2025",
+    duration: "5 Modules",
+    type: "Course Certification",
+    category: "course",
+    color: "#2563EB",
+    description:
+      "Completed comprehensive SQL course covering MySQL fundamentals, database design, queries, joins, and indexing. 48 video tutorials, 5 modules, and 5 hands-on challenges.",
+    skills: ["SQL", "MySQL", "Database Design", "Queries", "Joins", "Indexing"],
+    issuedBy: "Anshuman Singh (Co-founder, Scaler)",
+    courseDetails: "48 Tutorials • 5 Modules • 5 Challenges",
+    certificateUrl: "/assets/certificates/scaler-sql.jpg",
+    verifyUrl: "",
   },
 ];
-// ━━━ Updated What I Build colors ━━━
 export const WHAT_I_BUILD = [
   {
     id: "realtime",

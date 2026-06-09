@@ -4,13 +4,17 @@ import {
   RiGithubLine,
   RiExternalLinkLine,
   RiArrowRightLine,
-  RiCheckboxCircleLine,
+  RiCheckLine,
   RiLayoutGridLine,
-  RiSignalWifiLine,
-  RiShieldCheckLine,
-  RiSmartphoneLine,
   RiStarFill,
   RiCodeBoxLine,
+  RiChat3Line,
+  RiShoppingBag3Line,
+  RiArticleLine,
+  RiCupLine,
+  RiStore3Line,
+  RiGraduationCapLine,
+  RiFolder3Line,
 } from "react-icons/ri";
 import SectionHeader from "@components/common/SectionHeader";
 import ScrollReveal from "@components/common/ScrollReveal";
@@ -18,6 +22,135 @@ import Button from "@components/ui/Button";
 import { TechTagGroup } from "@components/ui/Tag";
 import { PROJECTS, GITHUB_PROFILE_URL } from "@lib/constants";
 import { gridContainerVariants, gridItemVariants } from "@lib/animations";
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ICON MAPPING - Real React Icons (No Emojis)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const ICON_MAP = {
+  chat: RiChat3Line,
+  shop: RiShoppingBag3Line,
+  blog: RiArticleLine,
+  coffee: RiCupLine,
+  marketplace: RiStore3Line,
+  education: RiGraduationCapLine,
+  default: RiFolder3Line,
+};
+
+function ProjectIcon({ name, size = 24, className = "" }) {
+  const IconComponent = ICON_MAP[name] || ICON_MAP.default;
+  return <IconComponent size={size} className={className} />;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LIGHT PROJECT PREVIEW - Clean & Minimal
+// ═══════════════════════════════════════════════════════════════════
+function ProjectPreview({ project, isLarge = false }) {
+  return (
+    <div className="relative w-full h-full rounded-xl overflow-hidden border border-black/[0.08] bg-gradient-card group/preview">
+      {/* ━━━ Top Bar (Browser-style without URL) ━━━ */}
+      <div className="px-3 py-2.5 border-b border-black/[0.05] flex items-center gap-2 bg-surface-2">
+        {/* Traffic Lights */}
+        <div className="flex items-center gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-black/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-black/10" />
+          <div className="w-2.5 h-2.5 rounded-full bg-black/10" />
+        </div>
+
+        {/* Center - Project tag */}
+        <div className="flex-1 flex items-center justify-center">
+          <div className="px-2.5 py-0.5 rounded-md bg-white border border-black/[0.06]">
+            <span className="text-[9px] font-mono text-text-tertiary tracking-wide">
+              {project.id}.app
+            </span>
+          </div>
+        </div>
+
+        {/* Live indicator */}
+        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[9px] font-bold text-emerald-700 tracking-wide">
+            LIVE
+          </span>
+        </div>
+      </div>
+
+      {/* ━━━ Content Area ━━━ */}
+      <div className="relative flex-1 flex flex-col items-center justify-center p-6 min-h-[180px] bg-white">
+        {/* Subtle dot grid background */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(15,15,18,0.5) 1px, transparent 0)`,
+            backgroundSize: isLarge ? "24px 24px" : "16px 16px",
+          }}
+        />
+
+        {/* Subtle accent glow */}
+        <div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-[0.06] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(233,75,60,0.6), transparent)",
+          }}
+        />
+
+        <div className="relative z-10 text-center">
+          {/* ━━━ Icon ━━━ */}
+          <div
+            className={`${
+              isLarge ? "w-16 h-16" : "w-12 h-12"
+            } mx-auto mb-4 rounded-2xl bg-surface-2 border border-black/[0.06] flex items-center justify-center group-hover/preview:border-black/[0.12] group-hover/preview:bg-surface-3 transition-all duration-300`}
+          >
+            <ProjectIcon
+              name={project.iconName}
+              size={isLarge ? 28 : 20}
+              className="text-primary"
+            />
+          </div>
+
+          {/* ━━━ Project Name ━━━ */}
+          <h4
+            className={`${
+              isLarge ? "text-2xl" : "text-base"
+            } font-bold text-primary tracking-tight mb-1`}
+          >
+            {project.title}
+          </h4>
+
+          {/* ━━━ Type Label ━━━ */}
+          <p
+            className={`${
+              isLarge ? "text-xs" : "text-[10px]"
+            } font-mono text-text-tertiary tracking-wider uppercase`}
+          >
+            {project.type}
+          </p>
+
+          {/* ━━━ Tech Stack (Large only) ━━━ */}
+          {isLarge && (
+            <div className="flex flex-wrap items-center justify-center gap-1.5 mt-4">
+              {project.tech.slice(0, 4).map((tech) => (
+                <span
+                  key={tech}
+                  className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-surface-2 text-text-secondary border border-black/[0.06]"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* ━━━ Bottom decorative line ━━━ */}
+        <div className="absolute bottom-3 left-3 right-3 flex items-center gap-1.5 opacity-30">
+          <div className="text-[10px] font-mono text-text-quaternary">$</div>
+          <div className="flex-1 h-px bg-gradient-to-r from-black/15 via-black/5 to-transparent" />
+          <div className="text-[10px] font-mono text-text-quaternary">_</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ═══════════════════════════════════════════════════════════════════
 // FLAGSHIP - TalishTalks
@@ -44,150 +177,19 @@ function FlagshipProject({ project }) {
       </ScrollReveal>
 
       <div className="relative bg-white rounded-3xl border border-black/[0.06] overflow-hidden shadow-elevation-3">
-        <div
-          className="absolute inset-0 opacity-100 pointer-events-none"
-          style={{
-            background: `linear-gradient(135deg, ${project.color}04 0%, transparent 60%)`,
-          }}
-        />
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 p-6 md:p-8 lg:p-10 relative">
+          {/* ━━━ Left: Preview (Large) ━━━ */}
           <ScrollReveal className="lg:col-span-6" delay={0.1}>
-            <div
-              className="relative rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center"
-              style={{
-                background: `linear-gradient(145deg, ${project.mockupBg} 0%, ${project.mockupBg}EE 100%)`,
-              }}
-            >
-              <div
-                className="absolute inset-0 opacity-[0.05]"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-                  backgroundSize: "32px 32px",
-                }}
-              />
-
-              <div className="relative w-[80%] max-w-[320px]">
-                <div className="bg-white rounded-[24px] shadow-2xl overflow-hidden border border-white/20">
-                  <div className="bg-gradient-to-r from-accent to-accent-light px-4 py-2.5 flex items-center justify-between">
-                    <span className="text-white text-[11px] font-bold tracking-tight">
-                      TalishTalks
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <RiSignalWifiLine size={11} className="text-white/80" />
-                      <RiShieldCheckLine size={11} className="text-white/80" />
-                    </div>
-                  </div>
-
-                  <div className="p-4 space-y-3 bg-gray-50 min-h-[200px]">
-                    <div className="flex items-end gap-2">
-                      <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
-                        <span className="text-[9px] font-bold text-accent">
-                          A
-                        </span>
-                      </div>
-                      <div className="bg-white rounded-2xl rounded-bl-md px-3 py-2 max-w-[75%] shadow-sm">
-                        <p className="text-[11px] text-gray-700 leading-relaxed">
-                          Hey! Have you checked the new features? 🚀
-                        </p>
-                        <span className="text-[8px] text-gray-400 mt-1 block">
-                          10:24 AM
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-end gap-2 justify-end">
-                      <div className="bg-accent rounded-2xl rounded-br-md px-3 py-2 max-w-[75%] shadow-sm">
-                        <p className="text-[11px] text-white leading-relaxed">
-                          Yes! The real-time typing indicator is amazing ✨
-                        </p>
-                        <div className="flex items-center justify-end gap-1 mt-1">
-                          <span className="text-[8px] text-white/70">
-                            10:25 AM
-                          </span>
-                          <span className="text-[8px] text-white/70">✓✓</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-end gap-2">
-                      <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
-                        <span className="text-[9px] font-bold text-accent">
-                          A
-                        </span>
-                      </div>
-                      <div className="bg-white rounded-2xl rounded-bl-md px-3 py-2 shadow-sm">
-                        <div className="flex items-center gap-1">
-                          {[0, 0.2, 0.4].map((delay, i) => (
-                            <motion.span
-                              key={i}
-                              className="w-1.5 h-1.5 rounded-full bg-gray-400"
-                              animate={{ opacity: [0.3, 1, 0.3] }}
-                              transition={{
-                                duration: 1.2,
-                                repeat: Infinity,
-                                delay,
-                              }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="px-3 py-2.5 border-t border-gray-100 flex items-center gap-2 bg-white">
-                    <div className="flex-1 bg-gray-50 rounded-full px-3 py-1.5">
-                      <span className="text-[10px] text-gray-400">
-                        Type a message...
-                      </span>
-                    </div>
-                    <div className="w-7 h-7 rounded-full bg-accent flex items-center justify-center">
-                      <RiArrowRightLine size={12} className="text-white" />
-                    </div>
-                  </div>
-                </div>
-
-                <motion.div
-                  className="absolute -top-3 -right-3 px-2.5 py-1 rounded-xl bg-white shadow-lg border border-black/[0.05] flex items-center gap-1.5"
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <RiSmartphoneLine size={11} className="text-accent" />
-                  <span className="text-[10px] font-bold text-primary">
-                    PWA
-                  </span>
-                </motion.div>
-
-                <motion.div
-                  className="absolute -bottom-2 -left-3 px-2.5 py-1 rounded-xl bg-white shadow-lg border border-black/[0.05] flex items-center gap-1.5"
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{
-                    duration: 3.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                >
-                  <RiSignalWifiLine size={11} className="text-emerald-500" />
-                  <span className="text-[10px] font-bold text-primary">
-                    Real-Time
-                  </span>
-                </motion.div>
-              </div>
+            <div className="aspect-[4/3] w-full">
+              <ProjectPreview project={project} isLarge={true} />
             </div>
           </ScrollReveal>
 
+          {/* ━━━ Right: Project Info ━━━ */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <ScrollReveal delay={0.2}>
               <div className="flex items-center gap-2 mb-3">
-                <span
-                  className="px-3 py-1 rounded-lg text-[10px] font-bold tracking-[0.08em] uppercase text-white"
-                  style={{ backgroundColor: project.color }}
-                >
+                <span className="px-3 py-1 rounded-lg text-[10px] font-bold tracking-[0.08em] uppercase text-white bg-primary">
                   {project.type}
                 </span>
                 <span className="text-xs text-text-tertiary font-medium">
@@ -202,12 +204,12 @@ function FlagshipProject({ project }) {
                 {project.description}
               </p>
 
+              {/* Stats Grid */}
               <div className="grid grid-cols-2 gap-2.5 mb-5">
                 {project.stats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="bg-white rounded-xl border border-black/[0.06] p-3"
-                    style={{ boxShadow: "0 1px 2px rgba(15,15,18,0.03)" }}
+                    className="bg-surface-2 rounded-xl border border-black/[0.06] p-3"
                   >
                     <div className="text-[9px] font-semibold text-text-quaternary tracking-[0.1em] uppercase mb-0.5">
                       {stat.label}
@@ -219,6 +221,7 @@ function FlagshipProject({ project }) {
                 ))}
               </div>
 
+              {/* Features */}
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-[10px] font-bold text-text-quaternary tracking-[0.1em] uppercase">
@@ -231,7 +234,7 @@ function FlagshipProject({ project }) {
                         onClick={() => setActiveFeatureSet(idx)}
                         className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold transition-all duration-200 ${
                           activeFeatureSet === idx
-                            ? "bg-accent text-white"
+                            ? "bg-primary text-white"
                             : "bg-black/[0.04] text-text-tertiary hover:text-primary"
                         }`}
                       >
@@ -255,10 +258,9 @@ function FlagshipProject({ project }) {
                         key={feature}
                         className="flex items-start gap-2 text-sm text-text-secondary"
                       >
-                        <RiCheckboxCircleLine
-                          size={14}
-                          className="text-emerald-500 shrink-0 mt-0.5"
-                        />
+                        <div className="w-4 h-4 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+                          <RiCheckLine size={9} className="text-emerald-600" />
+                        </div>
                         <span className="leading-relaxed">{feature}</span>
                       </li>
                     ))}
@@ -299,55 +301,29 @@ function FlagshipProject({ project }) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// COMPACT PROJECT CARD - 3 per row
+// COMPACT PROJECT CARD
 // ═══════════════════════════════════════════════════════════════════
 function ProjectCard({ project }) {
   return (
     <motion.div variants={gridItemVariants}>
       <div
-        className="bg-white rounded-2xl border border-black/[0.06] overflow-hidden h-full flex flex-col group transition-all duration-400 hover:shadow-elevation-4 hover:-translate-y-1"
+        className="bg-white rounded-2xl border border-black/[0.06] overflow-hidden h-full flex flex-col group transition-all duration-400 hover:shadow-elevation-4 hover:-translate-y-1 hover:border-black/[0.10]"
         style={{ boxShadow: "0 1px 4px rgba(15,15,18,0.04)" }}
       >
-        {/* Compact icon preview */}
-        <div
-          className="relative aspect-[16/7] overflow-hidden"
-          style={{
-            background: `linear-gradient(145deg, ${project.mockupBg} 0%, ${project.mockupBg}DD 100%)`,
-          }}
-        >
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage: `linear-gradient(rgba(15,15,18,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(15,15,18,0.1) 1px, transparent 1px)`,
-              backgroundSize: "20px 20px",
-            }}
-          />
+        {/* ━━━ Preview ━━━ */}
+        <div className="relative aspect-[16/9] p-3 bg-surface-2">
+          <ProjectPreview project={project} isLarge={false} />
+        </div>
 
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-xl transition-transform duration-300 group-hover:scale-110"
-              style={{
-                backgroundColor: `${project.color}20`,
-                boxShadow: `0 6px 20px ${project.color}25`,
-              }}
-            >
-              {project.icon || "💻"}
-            </div>
-          </div>
-
+        {/* ━━━ Body ━━━ */}
+        <div className="p-4 flex-1 flex flex-col">
           {/* Type badge */}
-          <div className="absolute top-2.5 left-2.5">
-            <span
-              className="px-2 py-0.5 rounded-md text-[9px] font-bold tracking-[0.08em] uppercase text-white shadow-sm"
-              style={{ backgroundColor: project.color }}
-            >
+          <div className="mb-2">
+            <span className="inline-block px-2 py-0.5 rounded-md text-[9px] font-bold tracking-[0.08em] uppercase text-text-tertiary bg-black/[0.04] border border-black/[0.05]">
               {project.type}
             </span>
           </div>
-        </div>
 
-        {/* Compact body */}
-        <div className="p-4 flex-1 flex flex-col">
           <h3 className="text-sm font-bold text-primary tracking-tight mb-0.5">
             {project.title}
           </h3>
@@ -359,12 +335,12 @@ function ProjectCard({ project }) {
             {project.tagline}
           </p>
 
-          {/* Mini stats - 2x2 */}
+          {/* Mini stats */}
           <div className="grid grid-cols-2 gap-1 mb-3">
             {project.stats.slice(0, 4).map((stat) => (
               <div
                 key={stat.label}
-                className="px-2 py-1 rounded-md bg-black/[0.03] border border-black/[0.04]"
+                className="px-2 py-1 rounded-md bg-surface-2 border border-black/[0.04]"
               >
                 <div className="text-[8px] font-semibold text-text-quaternary tracking-wide uppercase">
                   {stat.label}
@@ -378,12 +354,12 @@ function ProjectCard({ project }) {
 
           <div className="flex-1" />
 
-          {/* Compact tech tags - max 4 */}
+          {/* Tech tags */}
           <div className="flex flex-wrap gap-1 mb-3">
             {project.tech.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="text-[9px] font-medium px-1.5 py-0.5 rounded-md bg-black/[0.04] text-text-tertiary border border-black/[0.04]"
+                className="text-[9px] font-medium px-1.5 py-0.5 rounded-md bg-black/[0.03] text-text-tertiary border border-black/[0.04]"
               >
                 {tech}
               </span>
@@ -395,7 +371,7 @@ function ProjectCard({ project }) {
             )}
           </div>
 
-          {/* Compact action buttons */}
+          {/* Action buttons */}
           <div className="flex items-center gap-1.5 pt-3 border-t border-black/[0.05]">
             <a
               href={project.live}
@@ -423,7 +399,7 @@ function ProjectCard({ project }) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// VIEW MORE ON GITHUB CARD
+// VIEW MORE ON GITHUB CARD - Light & Minimal
 // ═══════════════════════════════════════════════════════════════════
 function ViewMoreCard() {
   return (
@@ -432,70 +408,62 @@ function ViewMoreCard() {
       target="_blank"
       rel="noopener noreferrer"
       variants={gridItemVariants}
-      whileHover={{ y: -4, scale: 1.01 }}
+      whileHover={{ y: -4 }}
       whileTap={{ scale: 0.98 }}
-      className="group relative bg-gradient-dark rounded-2xl border border-white/10 overflow-hidden h-full flex flex-col items-center justify-center p-6 text-white transition-all duration-400 hover:shadow-elevation-5 cursor-pointer min-h-[280px]"
+      className="group relative bg-white rounded-2xl border border-black/[0.06] overflow-hidden h-full flex flex-col items-center justify-center p-6 transition-all duration-400 hover:shadow-elevation-4 hover:border-black/[0.12] cursor-pointer min-h-[300px]"
+      style={{ boxShadow: "0 1px 4px rgba(15,15,18,0.04)" }}
     >
-      {/* Background decoration */}
+      {/* Subtle dot pattern */}
       <div
-        className="absolute inset-0 opacity-[0.08]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41z'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(15,15,18,0.5) 1px, transparent 0)`,
+          backgroundSize: "20px 20px",
         }}
       />
 
-      {/* Gradient orbs */}
+      {/* Subtle accent glow */}
       <div
-        className="absolute top-0 right-0 w-40 h-40 opacity-30"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-[0.08]"
         style={{
-          background: "radial-gradient(circle, #5B5FC7, transparent 60%)",
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 w-32 h-32 opacity-20"
-        style={{
-          background: "radial-gradient(circle, #E94B3C, transparent 60%)",
+          background:
+            "radial-gradient(circle, rgba(233,75,60,0.6), transparent)",
         }}
       />
 
-      {/* Content */}
       <div className="relative z-10 text-center">
-        <motion.div
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
-        >
-          <RiGithubLine size={32} className="text-white" />
-        </motion.div>
+        {/* Icon */}
+        <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-surface-2 border border-black/[0.06] flex items-center justify-center group-hover:bg-surface-3 group-hover:border-black/[0.10] transition-all duration-300">
+          <RiGithubLine size={26} className="text-primary" />
+        </div>
 
-        <h3 className="text-lg font-bold text-white tracking-tight mb-1.5">
-          More Projects
+        <h3 className="text-base font-bold text-primary tracking-tight mb-1.5">
+          More on GitHub
         </h3>
 
-        <p className="text-xs text-white/60 leading-relaxed mb-5 max-w-[200px] mx-auto">
-          Explore my full collection of projects, experiments & open-source
-          contributions
+        <p className="text-xs text-text-tertiary leading-relaxed mb-5 max-w-[200px] mx-auto">
+          Explore my full collection of projects & open-source work
         </p>
 
         {/* Stats */}
-        <div className="flex items-center justify-center gap-4 mb-5 text-[11px] text-white/50">
-          <div className="flex items-center gap-1.5">
-            <RiCodeBoxLine size={12} />
+        <div className="flex items-center justify-center gap-3 mb-5 text-[10px] text-text-quaternary font-mono">
+          <div className="flex items-center gap-1">
+            <RiCodeBoxLine size={11} />
             <span>20+ Repos</span>
           </div>
-          <div className="w-1 h-1 rounded-full bg-white/30" />
-          <div className="flex items-center gap-1.5">
-            <RiStarFill size={11} className="text-amber-400" />
-            <span>Public</span>
+          <div className="w-0.5 h-0.5 rounded-full bg-text-quaternary" />
+          <div className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span>Active</span>
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white text-primary text-xs font-bold group-hover:bg-accent group-hover:text-white transition-all duration-300">
-          <RiGithubLine size={13} />
-          View on GitHub
+        {/* CTA */}
+        <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold group-hover:bg-accent transition-all duration-300">
+          <RiGithubLine size={12} />
+          View Profile
           <RiArrowRightLine
-            size={12}
+            size={11}
             className="transition-transform duration-300 group-hover:translate-x-0.5"
           />
         </div>
@@ -551,7 +519,7 @@ export default function Projects() {
           </div>
         </ScrollReveal>
 
-        {/* 3-column compact grid */}
+        {/* 3-column grid */}
         <motion.div
           variants={gridContainerVariants}
           initial="hidden"
@@ -563,7 +531,6 @@ export default function Projects() {
             <ProjectCard key={project.id} project={project} />
           ))}
 
-          {/* ━━━ View More on GitHub Card (last item) ━━━ */}
           <ViewMoreCard />
         </motion.div>
       </div>

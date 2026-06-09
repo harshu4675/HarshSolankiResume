@@ -205,7 +205,7 @@ export default function Hero() {
             >
               {[
                 { label: "Projects", value: "20+" },
-                { label: "Industry Exp.", value: "3 Mo" },
+                { label: "Industry Exp.", value: "4 Mo" },
                 { label: "Certifications", value: "6" },
               ].map((stat) => (
                 <div key={stat.label} className="flex flex-col">

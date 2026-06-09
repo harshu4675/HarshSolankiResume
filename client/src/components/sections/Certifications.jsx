@@ -6,15 +6,30 @@ import {
   RiShieldCheckLine,
   RiExternalLinkLine,
   RiEyeLine,
+  RiBriefcaseLine,
+  RiCodeBoxLine,
+  RiBookOpenLine,
+  RiTrophyLine,
 } from "react-icons/ri";
-import { SiHackerrank } from "react-icons/si";
+import { SiHackerrank, SiFreecodecamp } from "react-icons/si";
 import SectionHeader from "@components/common/SectionHeader";
 import CertificateModal from "@components/common/CertificateModal";
 import { CERTIFICATIONS, SOCIAL } from "@lib/constants";
 import { gridContainerVariants, gridItemVariants } from "@lib/animations";
 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CERTIFICATION CARD
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function CertificationCard({ cert, onView }) {
-  const isHackerRank = cert.issuer === "HackerRank";
+  const getIssuerIcon = () => {
+    if (cert.issuer === "HackerRank")
+      return <SiHackerrank size={20} style={{ color: cert.color }} />;
+    if (cert.issuer === "freeCodeCamp")
+      return <SiFreecodecamp size={20} style={{ color: cert.color }} />;
+    if (cert.category === "course")
+      return <RiBookOpenLine size={20} style={{ color: cert.color }} />;
+    return <RiAwardLine size={20} style={{ color: cert.color }} />;
+  };
 
   return (
     <motion.div variants={gridItemVariants}>
@@ -42,11 +57,7 @@ function CertificationCard({ cert, onView }) {
               className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
               style={{ backgroundColor: `${cert.color}12` }}
             >
-              {isHackerRank ? (
-                <SiHackerrank size={20} style={{ color: cert.color }} />
-              ) : (
-                <RiAwardLine size={20} style={{ color: cert.color }} />
-              )}
+              {getIssuerIcon()}
             </div>
 
             <div className="flex-1 min-w-0">
@@ -63,10 +74,10 @@ function CertificationCard({ cert, onView }) {
           </div>
 
           {/* Meta */}
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-1.5 mb-3 flex-wrap">
             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-semibold text-text-tertiary bg-black/[0.04] border border-black/[0.05]">
               <RiCalendarLine size={9} />
-              {cert.year}
+              {cert.duration || cert.year}
             </span>
             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-semibold text-text-tertiary bg-black/[0.04] border border-black/[0.05]">
               <RiShieldCheckLine size={9} />
@@ -106,7 +117,19 @@ function CertificationCard({ cert, onView }) {
             </div>
           </div>
 
-          {/* ━━━ View Certificate Button ━━━ */}
+          {/* Credential ID (if exists) */}
+          {cert.credentialId && (
+            <div className="mb-3 px-2 py-1 rounded-md bg-black/[0.02] border border-black/[0.04]">
+              <p className="text-[9px] font-semibold text-text-quaternary tracking-wide uppercase">
+                Credential ID
+              </p>
+              <p className="text-[10px] font-mono font-bold text-text-secondary truncate">
+                {cert.credentialId}
+              </p>
+            </div>
+          )}
+
+          {/* View Certificate Button */}
           <motion.button
             onClick={() => onView(cert)}
             whileHover={{ scale: 1.02 }}
@@ -142,6 +165,51 @@ function CertificationCard({ cert, onView }) {
   );
 }
 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SECTION HEADER COMPONENT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function CategoryHeader({ icon, iconColor, title, count, badge, profileUrl }) {
+  return (
+    <div className="flex items-center justify-between mb-5">
+      <div className="flex items-center gap-3 flex-1">
+        <div
+          className="w-7 h-7 rounded-lg flex items-center justify-center"
+          style={{ backgroundColor: `${iconColor}10` }}
+        >
+          {React.cloneElement(icon, { size: 14, style: { color: iconColor } })}
+        </div>
+        <h3 className="text-sm font-bold text-primary tracking-tight">
+          {title}
+        </h3>
+        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold text-text-tertiary bg-black/[0.04] border border-black/[0.05]">
+          {count}
+        </span>
+        {badge && (
+          <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200">
+            <RiCodeBoxLine size={9} />
+            {badge}
+          </span>
+        )}
+        <div className="h-px flex-1 bg-black/[0.06]" />
+      </div>
+      {profileUrl && (
+        <a
+          href={profileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-text-tertiary hover:text-primary transition-colors ml-3"
+        >
+          Profile
+          <RiExternalLinkLine size={11} />
+        </a>
+      )}
+    </div>
+  );
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MAIN CERTIFICATIONS SECTION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export default function Certifications() {
   const [selectedCert, setSelectedCert] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -153,17 +221,23 @@ export default function Certifications() {
 
   const handleClose = () => {
     setIsModalOpen(false);
-    // Don't clear cert immediately - lets exit animation play
     setTimeout(() => setSelectedCert(null), 300);
   };
 
-  // Separate HackerRank from professional certs
+  // Separate by category
   const professionalCerts = CERTIFICATIONS.filter(
-    (c) => c.issuer !== "HackerRank",
+    (c) => c.category === "professional",
   );
   const hackerRankCerts = CERTIFICATIONS.filter(
-    (c) => c.issuer === "HackerRank",
+    (c) => c.category === "hackerrank",
   );
+  const freeCodeCampCerts = CERTIFICATIONS.filter(
+    (c) => c.category === "freecodecamp",
+  );
+  const courseCerts = CERTIFICATIONS.filter((c) => c.category === "course");
+
+  // Calculate total fCC hours
+  const fccTotalHours = freeCodeCampCerts.length * 300;
 
   return (
     <>
@@ -174,28 +248,27 @@ export default function Certifications() {
         <div className="container-main relative z-10">
           <SectionHeader
             label="Certifications"
-            title="Verified Skills & Certifications"
-            description="Industry-recognized certifications validating my expertise across multiple technologies. Click to view."
+            title="Verified Skills & Achievements"
+            description={`${CERTIFICATIONS.length} industry-recognized certifications across internships, skill assessments, and structured learning paths.`}
             className="mb-12"
           />
 
-          {/* Professional Certifications */}
+          {/* ━━━ 1. PROFESSIONAL INTERNSHIPS ━━━ */}
           {professionalCerts.length > 0 && (
-            <div className="mb-10">
-              <div className="flex items-center gap-3 mb-5">
-                <RiAwardLine size={16} className="text-text-tertiary" />
-                <h3 className="text-sm font-semibold text-text-secondary tracking-tight">
-                  Professional Training
-                </h3>
-                <div className="h-px flex-1 bg-black/[0.06]" />
-              </div>
+            <div className="mb-12">
+              <CategoryHeader
+                icon={<RiBriefcaseLine />}
+                iconColor="#E94B3C"
+                title="Professional Internships"
+                count={professionalCerts.length}
+              />
 
               <motion.div
                 variants={gridContainerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl"
+                className="grid grid-cols-1 md:grid-cols-2 gap-4"
               >
                 {professionalCerts.map((cert) => (
                   <CertificationCard
@@ -208,34 +281,23 @@ export default function Certifications() {
             </div>
           )}
 
-          {/* HackerRank Certifications */}
+          {/* ━━━ 2. HACKERRANK SKILL VERIFIED ━━━ */}
           {hackerRankCerts.length > 0 && (
-            <div>
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-3 flex-1">
-                  <SiHackerrank size={16} className="text-[#00EA64]" />
-                  <h3 className="text-sm font-semibold text-text-secondary tracking-tight">
-                    HackerRank Verified Skills
-                  </h3>
-                  <div className="h-px flex-1 bg-black/[0.06]" />
-                </div>
-                <a
-                  href={SOCIAL.hackerrank}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-text-tertiary hover:text-primary transition-colors"
-                >
-                  View Profile
-                  <RiExternalLinkLine size={11} />
-                </a>
-              </div>
+            <div className="mb-12">
+              <CategoryHeader
+                icon={<SiHackerrank />}
+                iconColor="#00EA64"
+                title="HackerRank Verified"
+                count={hackerRankCerts.length}
+                profileUrl={SOCIAL.hackerrank}
+              />
 
               <motion.div
                 variants={gridContainerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                className="grid grid-cols-1 md:grid-cols-2 gap-4"
               >
                 {hackerRankCerts.map((cert) => (
                   <CertificationCard
@@ -248,9 +310,125 @@ export default function Certifications() {
             </div>
           )}
 
+          {/* ━━━ 3. freeCodeCamp CERTIFICATIONS ━━━ */}
+          {freeCodeCampCerts.length > 0 && (
+            <div className="mb-12">
+              <CategoryHeader
+                icon={<SiFreecodecamp />}
+                iconColor="#0A0A23"
+                title="freeCodeCamp Certified"
+                count={freeCodeCampCerts.length}
+                badge={`${fccTotalHours}+ hours`}
+                profileUrl="https://www.freecodecamp.org/harshu6278"
+              />
+
+              <motion.div
+                variants={gridContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+              >
+                {freeCodeCampCerts.map((cert) => (
+                  <CertificationCard
+                    key={cert.id}
+                    cert={cert}
+                    onView={handleView}
+                  />
+                ))}
+              </motion.div>
+            </div>
+          )}
+
+          {/* ━━━ 4. ONLINE COURSES (Scaler) ━━━ */}
+          {courseCerts.length > 0 && (
+            <div>
+              <CategoryHeader
+                icon={<RiBookOpenLine />}
+                iconColor="#2563EB"
+                title="Online Courses"
+                count={courseCerts.length}
+              />
+
+              <motion.div
+                variants={gridContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+              >
+                {courseCerts.map((cert) => (
+                  <CertificationCard
+                    key={cert.id}
+                    cert={cert}
+                    onView={handleView}
+                  />
+                ))}
+              </motion.div>
+            </div>
+          )}
+
+          {/* Bottom stats summary */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3"
+          >
+            {[
+              {
+                icon: <RiBriefcaseLine size={16} />,
+                label: "Internships",
+                value: professionalCerts.length,
+                color: "#E94B3C",
+              },
+              {
+                icon: <SiHackerrank size={16} />,
+                label: "HackerRank",
+                value: hackerRankCerts.length,
+                color: "#00EA64",
+              },
+              {
+                icon: <SiFreecodecamp size={16} />,
+                label: "freeCodeCamp",
+                value: freeCodeCampCerts.length,
+                color: "#0A0A23",
+              },
+              {
+                icon: <RiTrophyLine size={16} />,
+                label: "Total Hours",
+                value: `${fccTotalHours}+`,
+                color: "#2563EB",
+              },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-white rounded-xl border border-black/[0.06] p-4 text-center"
+                style={{ boxShadow: "0 1px 3px rgba(15,15,18,0.04)" }}
+              >
+                <div
+                  className="w-9 h-9 rounded-lg flex items-center justify-center mx-auto mb-2"
+                  style={{
+                    backgroundColor: `${stat.color}10`,
+                    color: stat.color,
+                  }}
+                >
+                  {stat.icon}
+                </div>
+                <div className="text-xl font-bold text-primary tracking-tight tabular-nums">
+                  {stat.value}
+                </div>
+                <div className="text-[10px] text-text-tertiary font-semibold tracking-wide uppercase mt-0.5">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
           {/* Bottom divider */}
           <motion.div
-            className="mt-16 h-px"
+            className="mt-12 h-px"
             style={{
               background:
                 "linear-gradient(90deg, transparent, rgba(15,15,18,0.06), transparent)",
@@ -263,7 +441,7 @@ export default function Certifications() {
         </div>
       </section>
 
-      {/* ━━━ Certificate Modal ━━━ */}
+      {/* Certificate Modal */}
       <CertificateModal
         certificate={selectedCert}
         isOpen={isModalOpen}
