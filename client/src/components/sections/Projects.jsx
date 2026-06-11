@@ -379,7 +379,6 @@ function ViewMoreCard() {
       className="group relative bg-white rounded-2xl border border-black/[0.06] overflow-hidden h-full flex flex-col items-center justify-center p-6 transition-all duration-400 hover:shadow-elevation-4 hover:border-black/[0.12] cursor-pointer min-h-[300px]"
       style={{ boxShadow: "0 1px 4px rgba(15,15,18,0.04)" }}
     >
-      {/* Subtle dot pattern */}
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -388,7 +387,6 @@ function ViewMoreCard() {
         }}
       />
 
-      {/* Subtle accent glow */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-[0.08]"
         style={{
@@ -408,7 +406,7 @@ function ViewMoreCard() {
         </h3>
 
         <p className="text-xs text-text-tertiary leading-relaxed mb-5 max-w-[200px] mx-auto">
-          Explore my full collection of projects & open-source work
+          Explore my full collection of projects
         </p>
 
         {/* Stats */}
