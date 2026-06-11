@@ -366,7 +366,6 @@ export const PROJECTS = [
     live: "https://your-own-brewhaven.netlify.app",
   },
 
-  // ━━━ 5. CodeMart ━━━
   {
     id: "codemart",
     title: "CodeMart",
@@ -407,7 +406,6 @@ export const PROJECTS = [
     live: "https://yourscodemart.netlify.app",
   },
 
-  // ━━━ 6. EdTech ━━━
   {
     id: "edtech",
     title: "EdTech",
