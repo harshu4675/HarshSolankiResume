@@ -409,7 +409,6 @@ function ViewMoreCard() {
           Explore my full collection of projects
         </p>
 
-        {/* Stats */}
         <div className="flex items-center justify-center gap-3 mb-5 text-[10px] text-text-quaternary font-mono">
           <div className="flex items-center gap-1">
             <RiCodeBoxLine size={11} />
@@ -422,7 +421,6 @@ function ViewMoreCard() {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold group-hover:bg-accent transition-all duration-300">
           <RiGithubLine size={12} />
           View Profile
@@ -436,9 +434,6 @@ function ViewMoreCard() {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// MAIN PROJECTS SECTION
-// ═══════════════════════════════════════════════════════════════════
 export default function Projects() {
   const flagshipProject = PROJECTS.find((p) => p.id === "talishtalks");
   const otherProjects = PROJECTS.filter((p) => p.id !== "talishtalks");
