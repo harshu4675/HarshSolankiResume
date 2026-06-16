@@ -23,9 +23,6 @@ import { TechTagGroup } from "@components/ui/Tag";
 import { PROJECTS, GITHUB_PROFILE_URL } from "@lib/constants";
 import { gridContainerVariants, gridItemVariants } from "@lib/animations";
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// ICON MAPPING - Real React Icons (No Emojis)
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const ICON_MAP = {
   chat: RiChat3Line,
   shop: RiShoppingBag3Line,
