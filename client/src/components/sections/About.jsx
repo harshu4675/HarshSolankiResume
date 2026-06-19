@@ -152,7 +152,7 @@ export default function About() {
                   <p>
                     During my{" "}
                     <span className="text-primary font-semibold">
-                      3-month internship at Kodrish Innovation
+                      4-month internship at Kodrish Innovation
                     </span>
                     , I worked on real-world production systems that gave me
                     hands-on experience across the complete development
